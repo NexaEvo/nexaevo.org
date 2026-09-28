@@ -26,5 +26,12 @@ without animation — used for screenshots.
 
 ## Deploy
 
-GitHub Pages from `main` (root). Custom domain in `CNAME`: `nexaevo.org`.
-DNS for `nexaevo.org` is on Cloudflare.
+Temporarily hosted on the shared server (`194.233.82.190`) behind nginx.
+
+- Checkout: `/root/NexaEvo/nexaevo.org` (NexaEvo code lives under `/root/NexaEvo/`,
+  never alongside Eranin projects).
+- Web root: `/var/www/nexaevo.org`, published by `./deploy.sh` (pull + rsync).
+- nginx site: `nginx/nexaevo.org.conf` -> `/etc/nginx/sites-available/nexaevo.org`;
+  TLS by certbot (Let's Encrypt).
+- DNS: Cloudflare zone `nexaevo.org` (NexaEvo's own Cloudflare account), A records
+  for `@` and `www`, proxy off.
