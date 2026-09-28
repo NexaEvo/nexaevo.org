@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NexaEvo — Bảo trì dự đoán cho dây chuyền sản xuất</title>
+<meta name="description" content="NexaEvo nghiên cứu và phát triển hệ thống bảo trì dự đoán cho dây chuyền sản xuất, kết hợp cảm biến IoT và AI.">
+<meta property="og:title" content="NexaEvo — Bảo trì dự đoán cho dây chuyền sản xuất">
+<meta property="og:description" content="Cảm biến IoT theo dõi máy liên tục. AI nhận ra dấu hiệu bất thường và báo sớm cho đội bảo trì.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexaevo.org/">
+<meta property="og:image" content="https://nexaevo.org/og.png">
+<meta name="theme-color" content="#F5F4EF">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F4EF;
+    --paper-2:#ECEAE2;
+    --card:#FFFFFF;
+    --ink:#16181D;
+    --ink-2:#3D414A;
+    --muted:#6B6F78;
+    --line:#D9D6CC;
+    --dot:#CFCBBF;
+    --ok:#2F7D5B;
+    --ok-soft:#E3EFE8;
+    --warn:#D9480F;
+    --warn-soft:#FBE7DC;
+    --radius:10px;
+    --max:1160px;
+    --sans:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size:22px 22px;
+  }
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+  p{margin:0;text-wrap:pretty}
+
+  /* header */
+  header{position:sticky;top:0;z-index:10;background:rgba(245,244,239,.92);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:19px;letter-spacing:-.01em}
+  .brand svg{display:block}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:15px}
+  .nav-links a{text-decoration:none;color:var(--ink-2)}
+  .nav-links a:hover{color:var(--ink)}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
+  .lang button{border:0;background:transparent;font:500 12.5px var(--mono);padding:6px 11px;cursor:pointer;color:var(--muted);min-height:32px}
+  .lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .lang button:focus-visible,.btn:focus-visible,.nav-links a:focus-visible{outline:2px solid var(--warn);outline-offset:2px}
+
+  /* hero */
+  .hero{padding:84px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(38px,5.2vw,62px);line-height:1.06;margin:18px 0 22px}
+  .hero h1 em{font-style:normal;color:var(--warn)}
+  .lede{font-size:19px;color:var(--ink-2);max-width:34em}
+  .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:8px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid var(--ink);transition:transform .15s ease, background .15s ease}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:#000;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--card)}
+
+  /* signal panel */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 1px 0 rgba(0,0,0,.03),0 18px 40px -24px rgba(22,24,29,.25)}
+  .panel-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .panel-title{font-weight:600;font-size:14.5px}
+  .status{display:inline-flex;align-items:center;gap:7px;font:500 12px var(--mono);padding:4px 10px;border-radius:999px;background:var(--ok-soft);color:var(--ok);transition:background .3s,color .3s}
+  .status i{width:7px;height:7px;border-radius:50%;background:currentColor}
+  .status.alert{background:var(--warn-soft);color:var(--warn)}
+  .chart{position:relative;padding:16px 18px 6px}
+  canvas{display:block;width:100%;height:230px}
+  .legend{display:flex;gap:18px;padding:0 18px 14px;font:12px var(--mono);color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .sw{width:14px;height:8px;border-radius:2px}
+  .note{margin:0 18px 16px;padding:13px 16px;border-radius:8px;background:var(--ok-soft);color:#1F4D38;font-size:14.5px;min-height:74px;transition:background .35s ease,color .35s ease}
+  .note b{display:block;color:var(--ok);margin-bottom:2px;transition:color .35s ease}
+  .note .alert-copy{display:none}
+  .note.show{background:var(--warn-soft);color:#7A2A07}
+  .note.show b{color:var(--warn)}
+  .note.show .ok-copy{display:none}
+  .note.show .alert-copy{display:block}
+  .caption{margin-top:12px;font:12px var(--mono);color:var(--muted)}
+
+  /* sections */
+  section{padding:88px 0;border-top:1px solid var(--line)}
+  .sec-head{display:grid;grid-template-columns:240px 1fr;gap:40px;margin-bottom:48px}
+  .sec-head h2{font-size:clamp(28px,3.4vw,40px);line-height:1.15}
+  .sec-head p{margin-top:14px;color:var(--ink-2);max-width:40em}
+
+  /* compare */
+  .compare{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card)}
+  .compare > div{padding:28px 26px 30px}
+  .compare > div + div{border-left:1px solid var(--line)}
+  .compare h3{font-size:20px;margin:10px 0 12px}
+  .compare p{color:var(--ink-2);font-size:16px}
+  .compare .pick{background:#FFFBF7;box-shadow:inset 0 3px 0 var(--warn)}
+  .compare .pick .mono{color:var(--warn)}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+  .steps::before{content:"";position:absolute;left:0;right:0;top:19px;height:1px;background:var(--line)}
+  .step{position:relative;padding-right:28px}
+  .step .num{position:relative;display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--paper);border:1px solid var(--ink);font:500 13px var(--mono)}
+  .step h3{font-size:19px;margin:22px 0 10px}
+  .step p{color:var(--ink-2);font-size:16px}
+
+  /* research */
+  .research{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}
+  .r-item{display:grid;grid-template-columns:56px 1fr;gap:6px;padding:28px 28px 30px 0;border-bottom:1px solid var(--line)}
+  .r-item:nth-child(odd){border-right:1px solid var(--line)}
+  .r-item:nth-child(even){padding-left:28px}
+  .r-item .mono{padding-top:5px}
+  .r-item h3{font-size:20px;margin-bottom:8px}
+  .r-item p{color:var(--ink-2);font-size:16px}
+
+  /* pilot */
+  .pilot{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+  .pilot-card{background:var(--ink);color:#EDEBE4;border-radius:var(--radius);padding:34px 34px 36px}
+  .pilot-card h3{color:#fff;font-size:24px;margin-bottom:22px}
+  .pilot-card ol{margin:0;padding:0;list-style:none;counter-reset:s}
+  .pilot-card li{counter-increment:s;display:grid;grid-template-columns:38px 1fr;padding:14px 0;border-top:1px solid #34373F}
+  .pilot-card li::before{content:counter(s,decimal-leading-zero);font:500 13px var(--mono);color:#FF8A4C;padding-top:3px}
+  .pilot-card .btn{margin-top:26px;background:#fff;color:var(--ink);border-color:#fff}
+  .pilot-card .btn:hover{background:#F0EEE8}
+
+  /* contact */
+  .contact{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+  .contact h2{font-size:clamp(28px,3.4vw,40px);max-width:16em}
+  .mail{font-size:clamp(20px,2.4vw,28px);font-weight:600;text-decoration:none;border-bottom:2px solid var(--warn);padding-bottom:4px;word-break:break-all}
+  .mail:hover{color:var(--warn)}
+  footer{border-top:1px solid var(--line);padding:26px 0 40px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+
+  /* responsive */
+  @media (max-width:960px){
+    .hero-grid,.pilot{grid-template-columns:1fr;gap:40px}
+    .sec-head{grid-template-columns:1fr;gap:10px}
+    .steps{grid-template-columns:1fr 1fr;row-gap:40px}
+    .steps::before{display:none}
+  }
+  @media (max-width:720px){
+    body{font-size:16px}
+    .wrap{padding:0 20px}
+    .nav-links a{display:none}
+    .hero{padding:56px 0 56px}
+    section{padding:64px 0}
+    .compare{grid-template-columns:1fr}
+    .compare > div + div{border-left:0;border-top:1px solid var(--line)}
+    .steps{grid-template-columns:1fr}
+    .research{grid-template-columns:1fr}
+    .r-item,.r-item:nth-child(even){padding:24px 0;border-right:0}
+    .pilot-card{padding:28px 24px}
+    canvas{height:200px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="NexaEvo">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" rx="7" fill="#16181D"/>
+        <path d="M6 18.5h4.2l2.4-7 3.8 12 3.2-9 1.9 4h4.5" fill="none" stroke="#FF8A4C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      NexaEvo
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how" data-i18n="nav.how">Cách hoạt động</a>
+      <a href="#research" data-i18n="nav.research">Nghiên cứu</a>
+      <a href="#pilot" data-i18n="nav.pilot">Thí điểm</a>
+      <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="vi" aria-pressed="true">VI</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="mono" data-i18n="hero.eyebrow">Nghiên cứu &amp; phát triển · IoT · AI</div>
+        <h1 data-i18n-html="hero.title">Biết máy sắp hỏng, <em>trước khi</em> dây chuyền phải dừng.</h1>
+        <p class="lede" data-i18n="hero.lede">NexaEvo nghiên cứu và phát triển hệ thống bảo trì dự đoán cho dây chuyền sản xuất. Cảm biến IoT theo dõi máy liên tục. AI nhận ra dấu hiệu bất thường và báo sớm cho đội bảo trì.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#pilot" data-i18n="hero.cta1">Tham gia thí điểm</a>
+          <a class="btn btn-ghost" href="#how" data-i18n="hero.cta2">Xem cách hoạt động</a>
+        </div>
+      </div>
+
+      <figure class="panel" style="margin:0" aria-labelledby="panel-cap">
+        <div class="panel-head">
+          <span class="panel-title" data-i18n="panel.title">Động cơ băng tải · độ rung</span>
+          <span class="status" id="status"><i></i><span id="status-text">BÌNH THƯỜNG</span></span>
+        </div>
+        <div class="chart"><canvas id="signal" aria-hidden="true"></canvas></div>
+        <div class="legend">
+          <span><span class="sw" style="background:var(--ok-soft);border:1px solid #BCD9C8"></span><span data-i18n="panel.band">Vùng bình thường</span></span>
+          <span><span class="sw" style="background:var(--ink)"></span><span data-i18n="panel.line">Độ rung đo được</span></span>
+        </div>
+        <div class="note" id="note" role="status" aria-live="polite">
+          <div class="ok-copy"><b data-i18n="panel.okTitle">Máy chạy ổn định</b><span data-i18n="panel.okBody">Độ rung nằm trong vùng bình thường của chính máy này.</span></div>
+          <div class="alert-copy"><b data-i18n="panel.alertTitle">Độ rung tăng dần</b><span data-i18n="panel.alertBody">Dấu hiệu sớm của mòn ổ bi. Nên kiểm tra trong đợt bảo trì tới, trước khi máy phải dừng.</span></div>
+        </div>
+        <figcaption class="caption" id="panel-cap" style="margin:0;padding:0 18px 16px" data-i18n="panel.caption">Minh hoạ cách hệ thống cảnh báo — không phải dữ liệu thật.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono" data-i18n="why.label">01 — Vấn đề</div>
+        <div>
+          <h2 data-i18n="why.title">Có ba cách bảo trì máy. Chỉ một cách dựa trên tình trạng thật của máy.</h2>
+        </div>
+      </div>
+      <div class="compare">
+        <div>
+          <div class="mono" data-i18n="why.a.tag">Hỏng mới sửa</div>
+          <h3 data-i18n="why.a.title">Dừng máy bất ngờ</h3>
+          <p data-i18n="why.a.body">Dây chuyền đứng giữa ca. Phải sửa gấp, chờ linh kiện và giao hàng trễ.</p>
+        </div>
+        <div>
+          <div class="mono" data-i18n="why.b.tag">Bảo trì theo lịch</div>
+          <h3 data-i18n="why.b.title">Thay khi còn tốt</h3>
+          <p data-i18n="why.b.body">Linh kiện bị thay sớm cho chắc. Máy vẫn có thể hỏng giữa hai lần bảo trì.</p>
+        </div>
+        <div class="pick">
+          <div class="mono" data-i18n="why.c.tag">Bảo trì dự đoán</div>
+          <h3 data-i18n="why.c.title">Sửa đúng lúc cần</h3>
+          <p data-i18n="why.c.body">Máy được theo dõi liên tục. Đội bảo trì biết máy nào cần xử lý và khi nào, trước khi sự cố xảy ra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono" data-i18n="how.label">02 — Cách hoạt động</div>
+        <div>
+          <h2 data-i18n="how.title">Từ cảm biến trên máy đến cảnh báo cho đội bảo trì.</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <h3 data-i18n="how.s1.t">Gắn cảm biến</h3>
+          <p data-i18n="how.s1.b">Đo độ rung, nhiệt độ, dòng điện và âm thanh ngay trên máy. Không cần thay máy đang dùng.</p>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <h3 data-i18n="how.s2.t">Thu thập dữ liệu</h3>
+          <p data-i18n="how.s2.b">Thiết bị đặt tại xưởng gom dữ liệu từ các cảm biến và gửi về hệ thống một cách an toàn.</p>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <h3 data-i18n="how.s3.t">AI phân tích</h3>
+          <p data-i18n="how.s3.b">AI học cách từng máy chạy khi bình thường, rồi nhận ra những thay đổi nhỏ mà mắt thường khó thấy.</p>
+        </div>
+        <div class="step">
+          <span class="num">04</span>
+          <h3 data-i18n="how.s4.t">Cảnh báo sớm</h3>
+          <p data-i18n="how.s4.b">Đội bảo trì nhận cảnh báo kèm nguyên nhân có thể và thời điểm nên xử lý.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono" data-i18n="res.label">03 — Nghiên cứu</div>
+        <div>
+          <h2 data-i18n="res.title">Bốn hướng NexaEvo đang nghiên cứu và phát triển.</h2>
+        </div>
+      </div>
+      <div class="research">
+        <div class="r-item">
+          <span class="mono">R1</span>
+          <div><h3 data-i18n="res.1.t">Cảm biến và thiết bị tại xưởng</h3><p data-i18n="res.1.b">Bộ cảm biến giá hợp lý, lắp nhanh và chạy ổn định trong môi trường nhà máy.</p></div>
+        </div>
+        <div class="r-item">
+          <span class="mono">R2</span>
+          <div><h3 data-i18n="res.2.t">Phát hiện bất thường</h3><p data-i18n="res.2.b">Nhận ra dấu hiệu lạ ngay cả khi máy chưa từng hỏng, tức là chưa có dữ liệu hỏng hóc để học.</p></div>
+        </div>
+        <div class="r-item">
+          <span class="mono">R3</span>
+          <div><h3 data-i18n="res.3.t">Dự báo thời gian còn lại</h3><p data-i18n="res.3.b">Ước tính máy còn chạy được bao lâu trước khi cần bảo trì, để lên kế hoạch vật tư và nhân lực.</p></div>
+        </div>
+        <div class="r-item">
+          <span class="mono">R4</span>
+          <div><h3 data-i18n="res.4.t">Kết nối với hệ thống nhà máy</h3><p data-i18n="res.4.b">Đưa cảnh báo vào phần mềm bảo trì và quản lý sản xuất mà nhà máy đang dùng.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pilot">
+    <div class="wrap pilot">
+      <div>
+        <div class="mono" data-i18n="pilot.label">04 — Chương trình thí điểm</div>
+        <h2 style="font-size:clamp(28px,3.4vw,40px);line-height:1.15;margin-top:16px" data-i18n="pilot.title">Cùng thử nghiệm trên một dây chuyền của bạn.</h2>
+        <p style="margin-top:18px;color:var(--ink-2);max-width:32em" data-i18n="pilot.body">NexaEvo đang tìm các nhà máy muốn thí điểm bảo trì dự đoán. Bạn góp dây chuyền và kinh nghiệm vận hành. Chúng tôi lo cảm biến, dữ liệu và AI.</p>
+      </div>
+      <div class="pilot-card">
+        <h3 data-i18n="pilot.card">Thí điểm diễn ra thế nào</h3>
+        <ol>
+          <li data-i18n="pilot.1">Chọn một dây chuyền và vài máy quan trọng nhất.</li>
+          <li data-i18n="pilot.2">NexaEvo lắp cảm biến và bắt đầu theo dõi.</li>
+          <li data-i18n="pilot.3">Hai bên cùng so cảnh báo với tình trạng thực tế của máy.</li>
+          <li data-i18n="pilot.4">Cùng quyết định có mở rộng sang các dây chuyền khác không.</li>
+        </ol>
+        <a class="btn" id="pilot-mail" href="mailto:hphung10499@gmail.com?subject=NexaEvo%20-%20Thi%20diem%20bao%20tri%20du%20doan" data-i18n="pilot.cta">Đăng ký thí điểm</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <div class="mono" data-i18n="contact.label">05 — Liên hệ</div>
+        <h2 style="margin-top:16px" data-i18n="contact.title">Bạn muốn trao đổi về dây chuyền của mình?</h2>
+      </div>
+      <a class="mail" href="mailto:hphung10499@gmail.com">hphung10499@gmail.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 NexaEvo · nexaevo.org</span>
+    <span data-i18n="foot">Nghiên cứu &amp; phát triển giải pháp IoT và AI cho sản xuất.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var DICT = {
+    en: {
+      "nav.how":"How it works","nav.research":"Research","nav.pilot":"Pilot","nav.contact":"Contact",
+      "hero.eyebrow":"Research & development · IoT · AI",
+      "hero.title":"Know a machine is failing <em>before</em> the line has to stop.",
+      "hero.lede":"NexaEvo researches and builds predictive maintenance for production lines. IoT sensors watch every machine around the clock. AI spots early warning signs and alerts the maintenance team in time.",
+      "hero.cta1":"Join the pilot","hero.cta2":"See how it works",
+      "panel.title":"Conveyor motor · vibration","panel.band":"Normal range","panel.line":"Measured vibration",
+      "panel.okTitle":"Running normally","panel.okBody":"Vibration is within this machine's own normal range.",
+      "panel.alertTitle":"Vibration is rising",
+      "panel.alertBody":"An early sign of bearing wear. Check it at the next maintenance window, before the machine has to stop.",
+      "panel.caption":"Illustration of how alerts work — not real data.",
+      "status.ok":"NORMAL","status.alert":"CHECK SOON",
+      "why.label":"01 — The problem",
+      "why.title":"There are three ways to maintain a machine. Only one is based on its actual condition.",
+      "why.a.tag":"Fix when broken","why.a.title":"Sudden stops","why.a.body":"The line stops mid-shift. Rush repairs, waiting for parts, late deliveries.",
+      "why.b.tag":"Scheduled maintenance","why.b.title":"Replace while still good","why.b.body":"Parts are swapped early to be safe. Machines can still fail between visits.",
+      "why.c.tag":"Predictive maintenance","why.c.title":"Fix exactly when needed","why.c.body":"Machines are monitored continuously. The team knows which machine needs attention, and when, before it breaks.",
+      "how.label":"02 — How it works","how.title":"From a sensor on the machine to an alert for the maintenance team.",
+      "how.s1.t":"Fit sensors","how.s1.b":"Measure vibration, temperature, current and sound on the machine itself. No need to replace existing equipment.",
+      "how.s2.t":"Collect data","how.s2.b":"A device on the shop floor gathers sensor data and sends it securely to the system.",
+      "how.s3.t":"AI analysis","how.s3.b":"The AI learns how each machine runs when healthy, then notices small changes the eye would miss.",
+      "how.s4.t":"Early warning","how.s4.b":"The maintenance team gets an alert with the likely cause and when to act.",
+      "res.label":"03 — Research","res.title":"Four areas NexaEvo is researching and building.",
+      "res.1.t":"Sensors and shop-floor devices","res.1.b":"Affordable sensor kits that install quickly and run reliably in a factory.",
+      "res.2.t":"Anomaly detection","res.2.b":"Spot unusual behaviour even on machines that have never failed, so there is no failure data to learn from.",
+      "res.3.t":"Remaining-life forecasting","res.3.b":"Estimate how long a machine can keep running before it needs service, so parts and people can be planned.",
+      "res.4.t":"Connecting to factory systems","res.4.b":"Send alerts into the maintenance and production software the factory already uses.",
+      "pilot.label":"04 — Pilot programme","pilot.title":"Try it together on one of your lines.",
+      "pilot.body":"NexaEvo is looking for factories that want to pilot predictive maintenance. You bring a production line and operating experience. We bring the sensors, the data and the AI.",
+      "pilot.card":"How a pilot works",
+      "pilot.1":"Choose one line and a few of its most critical machines.",
+      "pilot.2":"NexaEvo installs sensors and starts monitoring.",
+      "pilot.3":"Together we compare alerts with the machines' real condition.",
+      "pilot.4":"Together we decide whether to extend it to other lines.",
+      "pilot.cta":"Apply for the pilot",
+      "contact.label":"05 — Contact","contact.title":"Want to talk about your production line?",
+      "foot":"Research & development of IoT and AI solutions for manufacturing."
+    },
+    vi: {"status.ok":"BÌNH THƯỜNG","status.alert":"CẦN KIỂM TRA"}
+  };
+  // capture Vietnamese originals from the markup
+  document.querySelectorAll("[data-i18n]").forEach(function(el){ DICT.vi[el.dataset.i18n] = el.textContent; });
+  document.querySelectorAll("[data-i18n-html]").forEach(function(el){ DICT.vi[el.dataset.i18nHtml] = el.innerHTML; });
+
+  var lang = "vi";
+  function t(k){ return (DICT[lang] && DICT[lang][k]) || DICT.vi[k] || k; }
+  function apply(l){
+    lang = l;
+    document.documentElement.lang = l;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){ el.innerHTML = t(el.dataset.i18nHtml); });
+    document.querySelectorAll(".lang button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.lang === l)); });
+    document.title = l === "en" ? "NexaEvo — Predictive maintenance for production lines" : "NexaEvo — Bảo trì dự đoán cho dây chuyền sản xuất";
+    var subj = l === "en" ? "NexaEvo%20-%20Predictive%20maintenance%20pilot" : "NexaEvo%20-%20Thi%20diem%20bao%20tri%20du%20doan";
+    document.getElementById("pilot-mail").href = "mailto:hphung10499@gmail.com?subject=" + subj;
+    setStatus(alerting);
+    try{ localStorage.setItem("nexaevo.lang", l); }catch(e){}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ apply(b.dataset.lang); }); });
+
+  // ---- illustrative signal ----
+  var cv = document.getElementById("signal"), ctx = cv.getContext("2d");
+  var statusEl = document.getElementById("status"), statusText = document.getElementById("status-text"), note = document.getElementById("note");
+  var alerting = false;
+  function setStatus(on){
+    alerting = on;
+    statusEl.classList.toggle("alert", on);
+    statusText.textContent = t(on ? "status.alert" : "status.ok");
+    note.classList.toggle("show", on);
+  }
+  var N = 240, LOOP = 14000, reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // deterministic pseudo-random so the drawing is stable
+  var seed = 7; function rnd(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  var noise = []; for (var i=0;i<N;i++) noise.push((rnd()-.5) + (rnd()-.5)*.6);
+  function value(i){
+    var x = i / (N-1), base = .34 + .04*Math.sin(i/9) + noise[i]*.07;
+    var drift = x > .55 ? Math.pow((x-.55)/.45, 1.7) * .42 : 0;
+    return base + drift;
+  }
+  var HI = .5; // top of the normal band
+  function size(){
+    var r = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    cv.width = Math.round(w*r); cv.height = Math.round(h*r); ctx.setTransform(r,0,0,r,0,0);
+  }
+  function draw(progress){
+    var w = cv.clientWidth, h = cv.clientHeight, pad = 6;
+    ctx.clearRect(0,0,w,h);
+    var y = function(v){ return h - pad - v*(h-2*pad); };
+    // grid
+    ctx.strokeStyle = "#EEECE5"; ctx.lineWidth = 1;
+    for (var g=1; g<5; g++){ var gy = Math.round(h*g/5)+.5; ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(w,gy); ctx.stroke(); }
+    // normal band
+    ctx.fillStyle = "#E3EFE8"; ctx.fillRect(0, y(HI), w, y(.18)-y(HI));
+    ctx.strokeStyle = "#9CC7AF"; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(0,y(HI)+.5); ctx.lineTo(w,y(HI)+.5); ctx.stroke(); ctx.setLineDash([]);
+    var last = Math.max(2, Math.floor(progress*(N-1)));
+    var crossed = -1;
+    for (var k=0;k<=last;k++){ if (value(k) > HI + .03 && crossed < 0 && k > N*.6) crossed = k; }
+    // line
+    ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.lineCap = "round";
+    function seg(from, to, color){
+      if (to <= from) return;
+      ctx.strokeStyle = color; ctx.beginPath();
+      for (var j=from;j<=to;j++){ var px = j/(N-1)*w, py = y(value(j)); j===from ? ctx.moveTo(px,py) : ctx.lineTo(px,py); }
+      ctx.stroke();
+    }
+    if (crossed < 0){ seg(0,last,"#16181D"); }
+    else { seg(0,crossed,"#16181D"); seg(crossed,last,"#D9480F"); }
+    // head dot
+    var hx = last/(N-1)*w, hy = y(value(last));
+    ctx.fillStyle = crossed >= 0 ? "#D9480F" : "#16181D"; ctx.beginPath(); ctx.arc(hx,hy,4,0,Math.PI*2); ctx.fill();
+    if (crossed >= 0){
+      var cx = crossed/(N-1)*w;
+      ctx.strokeStyle = "#D9480F"; ctx.globalAlpha = .5; ctx.setLineDash([3,4]);
+      ctx.beginPath(); ctx.moveTo(cx+.5, 0); ctx.lineTo(cx+.5, h); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    }
+    if ((crossed >= 0) !== alerting) setStatus(crossed >= 0);
+  }
+  size();
+  var start = null;
+  function frame(ts){
+    if (start === null) start = ts;
+    var p = ((ts - start) % LOOP) / LOOP;          // 0..1
+    var prog = Math.min(1, p / .82);               // draw, then hold
+    draw(prog);
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener("resize", function(){ size(); if (reduce || /[?&]frame=end\b/.test(location.search)) draw(1); });
+
+  var saved = null; try{ saved = localStorage.getItem("nexaevo.lang"); }catch(e){}
+  apply(saved || ((navigator.language||"").toLowerCase().indexOf("vi") === 0 ? "vi" : "en"));
+  var still = /[?&]frame=end\b/.test(location.search);
+  if (reduce || still) draw(1); else requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
