@@ -26,12 +26,15 @@ without animation — used for screenshots.
 
 ## Deploy
 
-Temporarily hosted on the shared server (`194.233.82.190`) behind nginx.
+Hosted on the Hermes host (`37.60.226.153`) behind nginx since 2026-11-15. The previous
+shared server (`194.233.82.190`) was retired.
 
 - Checkout: `/root/NexaEvo/nexaevo.org` (NexaEvo code lives under `/root/NexaEvo/`,
   never alongside Eranin projects).
 - Web root: `/var/www/nexaevo.org`, published by `./deploy.sh` (pull + rsync).
 - nginx site: `nginx/nexaevo.org.conf` -> `/etc/nginx/sites-available/nexaevo.org`;
-  TLS by certbot (Let's Encrypt).
+  `nginx/00-default-deny.conf` closes requests for any other name (bare IP scans).
+- TLS: Let's Encrypt via `certbot --nginx` (certificate `nexaevo.org`, both names),
+  renewed by `certbot.timer`.
 - DNS: Cloudflare zone `nexaevo.org` (NexaEvo's own Cloudflare account), A records
-  for `@` and `www`, proxy off.
+  for `@` and `www`, proxy off so HTTP-01 renewals reach the origin.
