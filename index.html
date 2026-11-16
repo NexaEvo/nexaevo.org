@@ -3,16 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NexaEvo — Nghiên cứu cảnh báo sớm cho dây chuyền sản xuất</title>
-<meta name="description" content="NexaEvo là tổ chức nghiên cứu độc lập về AI và IoT cho bảo trì công nghiệp: cảnh báo sớm sự cố trên dây chuyền sản xuất, bắt đầu từ bằng chứng.">
-<meta property="og:title" content="NexaEvo — Nghiên cứu cảnh báo sớm cho dây chuyền sản xuất">
-<meta property="og:description" content="Tổ chức nghiên cứu độc lập về AI và IoT cho bảo trì công nghiệp. Mỗi kết quả ghi rõ dữ liệu, cách đo và giới hạn của nó.">
+<title>NexaEvo — Tổ chức nghiên cứu cá nhân của Nguyễn Hoàng Phụng</title>
+<meta name="description" content="NexaEvo là tổ chức nghiên cứu cá nhân của Nguyễn Hoàng Phụng về AI và IoT cho bảo trì công nghiệp: cảnh báo sớm sự cố trên dây chuyền sản xuất, bắt đầu từ bằng chứng.">
+<meta property="og:title" content="NexaEvo — Tổ chức nghiên cứu cá nhân của Nguyễn Hoàng Phụng">
+<meta property="og:description" content="Nghiên cứu AI và IoT cho bảo trì công nghiệp: cảnh báo sớm cho dây chuyền sản xuất, bắt đầu từ bằng chứng.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexaevo.org/">
-<meta property="og:image" content="https://nexaevo.org/og.png">
+<meta property="og:image" content="https://nexaevo.org/og-research.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://nexaevo.org/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ResearchOrganization","@id":"https://nexaevo.org/#org","name":"NexaEvo","url":"https://nexaevo.org/","logo":"https://nexaevo.org/logo-512.png","email":"hphung10499@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"founder":{"@id":"https://nexaevo.org/#phung"}},{"@type":"Person","@id":"https://nexaevo.org/#phung","name":"Nguyen Hoang Phung","jobTitle":"Founder and lead researcher","affiliation":{"@id":"https://nexaevo.org/#org"},"alumniOf":"Ho Chi Minh City University of Technology (HCMUT)"},{"@type":"ScholarlyArticle","headline":"Dataset Suitability for Predictive Maintenance in Conveyor-Based Factories: A Technical Review and Evaluation Framework","author":{"@id":"https://nexaevo.org/#phung"},"datePublished":"2026-09-30","url":"https://nexaevo.org/papers/dataset-suitability/","publisher":{"@id":"https://nexaevo.org/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ResearchOrganization","@id":"https://nexaevo.org/#org","name":"NexaEvo","description":"Personal research organisation of Nguyen Hoang Phung on AI and IoT for industrial maintenance.","url":"https://nexaevo.org/","logo":"https://nexaevo.org/logo-512.png","email":"hphung10499@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"founder":{"@id":"https://nexaevo.org/#phung"}},{"@type":"Person","@id":"https://nexaevo.org/#phung","name":"Nguyễn Hoàng Phụng","alternateName":"Nguyen Hoang Phung","jobTitle":"Founder and lead researcher, NexaEvo","email":"hphung10499@gmail.com","url":"https://nexaevo.org/#about","address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Ho Chi Minh City University of Technology (HCMUT)"},"knowsAbout":["Site reliability engineering","DevOps","Cloud infrastructure","Kubernetes","Observability","Industrial IoT","Predictive maintenance","Retrieval-augmented generation"],"award":["TopDev Challenge 2020 — first place, final round","Bronze medal — 22nd April 30th Mathematics Olympiad"],"worksFor":{"@id":"https://nexaevo.org/#org"}},{"@type":"ScholarlyArticle","headline":"Dataset Suitability for Predictive Maintenance in Conveyor-Based Factories: A Technical Review and Evaluation Framework","author":{"@id":"https://nexaevo.org/#phung"},"datePublished":"2026-09-30","url":"https://nexaevo.org/papers/dataset-suitability/","publisher":{"@id":"https://nexaevo.org/#org"}}]}</script>
 <meta name="theme-color" content="#F6F5F0">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -138,20 +140,36 @@
   .measure{display:grid;grid-template-columns:220px minmax(0,1fr);gap:40px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
   .measure p{font-family:var(--serif);font-size:clamp(21px,2.1vw,26px);line-height:1.4;max-width:28em}
 
-  /* people */
-  .person{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;border-top:1px solid var(--line-strong);padding-top:30px}
-  .person h3{font-family:var(--serif);font-size:30px;line-height:1.2}
-  .person .role{margin-top:6px;color:var(--accent);font-weight:600}
-  .person dl{margin:28px 0 0}
-  .person dt{margin-top:18px}
-  .person dd{margin:6px 0 0;font-size:15.5px;color:var(--ink-2)}
-  .bio p + p{margin-top:14px}
+  /* profile */
+  .profile{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:56px;border-top:1px solid var(--line-strong);padding-top:30px}
+  .profile .id{position:sticky;top:96px;align-self:start}
+  .profile .id h3{font-family:var(--serif);font-size:34px;line-height:1.15}
+  .role{margin-top:8px;color:var(--accent);font-weight:600}
+  .tagline{margin-top:6px;color:var(--ink-2);font-size:15.5px}
+  .idfacts{margin:26px 0 0;border-top:1px solid var(--line)}
+  .idfacts > div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+  .idfacts dt{padding-top:2px}
+  .idfacts dd{margin:0}
   .bio p{color:var(--ink-2)}
-  .timeline{margin-top:30px;border-top:1px solid var(--line)}
-  .tl{display:grid;grid-template-columns:118px minmax(0,1fr);gap:20px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15.5px}
-  .tl .mono{padding-top:2px;text-transform:none;letter-spacing:.02em}
-  .tl b{font-weight:600}
-  .tl span{color:var(--ink-2)}
+  .bio p + p{margin-top:14px}
+  .block{margin-top:44px}
+  .block-label{display:block;margin-bottom:12px}
+  .xp{border-top:1px solid var(--line-strong)}
+  .xp-row{display:grid;grid-template-columns:136px minmax(0,1fr);gap:22px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .when{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:3px;white-space:nowrap}
+  .xp-row h4{margin:0;font-size:16.5px;font-weight:600;line-height:1.45}
+  .xp-row h4 span{font-weight:400;color:var(--muted)}
+  .xp-row p{margin-top:4px;font-size:15.5px;color:var(--ink-2)}
+  .skills{border-top:1px solid var(--line-strong)}
+  .sk{display:grid;grid-template-columns:168px minmax(0,1fr);gap:22px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+  .sk span{color:var(--ink-2)}
+  .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+  .list{margin:0;padding:0;list-style:none;border-top:1px solid var(--line-strong)}
+  .list li{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .list li span{color:var(--muted);font-family:var(--mono);font-size:12.5px;white-space:nowrap;padding-top:2px}
+  .who{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2);text-decoration:none;max-width:34em}
+  .who b{color:var(--ink);font-weight:600}
+  .who:hover b{text-decoration:underline;text-underline-offset:4px}
 
   /* collaborate */
   .collab{border-top:1px solid var(--line-strong)}
@@ -173,7 +191,8 @@
     .latest .thumb{grid-row:2 / span 3}
     .latest h3{margin-top:0}
     .sec-head,.measure,.c-row{grid-template-columns:1fr;gap:12px}
-    .pub,.person{grid-template-columns:1fr;gap:40px}
+    .pub,.profile{grid-template-columns:1fr;gap:40px}
+    .profile .id{position:static}
     .gates{grid-template-columns:repeat(3,minmax(0,1fr))}
     .gate:nth-child(4){padding-left:0;border-left:0}
     .gate:nth-child(n+4){border-top:1px solid var(--line)}
@@ -196,7 +215,9 @@
     .hyp-row p{grid-column:2}
     .fact{grid-template-columns:1fr;gap:4px}
     .figure{padding:20px 16px 18px}
-    .tl{grid-template-columns:96px minmax(0,1fr);gap:12px}
+    .xp-row,.sk{grid-template-columns:1fr;gap:2px}
+    .two{grid-template-columns:1fr;gap:44px}
+    .profile .id h3{font-size:30px}
   }
 </style>
 </head>
@@ -208,10 +229,10 @@
       NexaEvo
     </a>
     <nav class="nav-links" aria-label="Main">
+      <a href="#about" data-i18n="nav.about">Về Phụng</a>
       <a href="#research" data-i18n="nav.research">Nghiên cứu</a>
       <a href="#publications" data-i18n="nav.pub">Công bố</a>
       <a href="#method" data-i18n="nav.method">Cách làm</a>
-      <a href="#people" data-i18n="nav.people">Con người</a>
       <a href="#collaborate" data-i18n="nav.collab">Hợp tác</a>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang="vi" aria-pressed="true">VI</button>
@@ -224,13 +245,14 @@
 <main id="top">
   <div class="hero-band"><div class="wrap hero">
     <div class="hero-main">
-      <div class="mono" data-i18n="hero.eyebrow">Tổ chức nghiên cứu độc lập · TP. Hồ Chí Minh</div>
+      <div class="mono" data-i18n="hero.eyebrow">Tổ chức nghiên cứu cá nhân · TP. Hồ Chí Minh</div>
       <h1 data-i18n-html="hero.title">Cảnh báo sớm cho dây&nbsp;chuyền sản xuất, <em>bắt đầu từ bằng chứng.</em></h1>
-      <p class="lede" data-i18n="hero.lede">NexaEvo nghiên cứu AI và IoT cho bảo trì công nghiệp. Mỗi kết quả ghi rõ dữ liệu đã dùng, cách đo và giới hạn của nó. Sản phẩm chỉ đến sau khi bằng chứng đủ vững.</p>
+      <p class="lede" data-i18n="hero.lede">NexaEvo là tổ chức nghiên cứu cá nhân của Nguyễn Hoàng Phụng về AI và IoT cho bảo trì công nghiệp. Mỗi kết quả ghi rõ dữ liệu đã dùng, cách đo và giới hạn của nó.</p>
       <div class="ctas">
         <a class="btn btn-primary" href="#publications" data-i18n="hero.cta1">Đọc công bố mới nhất</a>
         <a class="btn btn-ghost" href="#collaborate" data-i18n="hero.cta2">Hợp tác nghiên cứu</a>
       </div>
+      <a class="who" href="#about"><b>Nguyễn Hoàng Phụng</b><span data-i18n="who">Người sáng lập · Nghiên cứu chính · Kỹ sư DevOps/SRE và IoT</span></a>
     </div>
     <aside class="latest" aria-labelledby="latest-title">
       <div class="mono" data-i18n="latest.label">Công bố mới nhất</div>
@@ -243,10 +265,85 @@
     </aside>
   </div></div>
 
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono" data-i18n="p.label">01 — Người nghiên cứu</div>
+        <div>
+          <h2 data-i18n="p.title">NexaEvo là tổ chức nghiên cứu cá nhân của Nguyễn Hoàng Phụng.</h2>
+          <p data-i18n="p.lede">Phụng chọn câu hỏi nghiên cứu, kiểm chứng kết quả và đứng tên các bài viết. Hướng nghiên cứu đến từ kinh nghiệm vận hành hệ thống thật.</p>
+        </div>
+      </div>
+      <div class="profile">
+        <div class="id">
+          <h3>Nguyễn Hoàng Phụng</h3>
+          <p class="role" data-i18n="p.role">Người sáng lập · Nghiên cứu chính</p>
+          <p class="tagline">DevOps / SRE · Cloud · Enterprise AI · IoT</p>
+          <dl class="idfacts">
+            <div><dt class="mono" data-i18n="p.loc.l">Nơi ở</dt><dd data-i18n="p.loc">TP. Hồ Chí Minh, Việt Nam</dd></div>
+            <div><dt class="mono">Email</dt><dd><a href="mailto:hphung10499@gmail.com">hphung10499@gmail.com</a></dd></div>
+            <div><dt class="mono" data-i18n="p.edu.l">Học vấn</dt><dd data-i18n="p.edu">Kỹ sư Điện – Điện tử – Viễn thông, Trường Đại học Bách khoa TP.HCM (2017–2023)</dd></div>
+            <div><dt class="mono" data-i18n="p.lang.l">Ngoại ngữ</dt><dd data-i18n="p.lang">Tiếng Nhật JLPT N4</dd></div>
+            <div><dt class="mono" data-i18n="p.int.l">Ngoài giờ</dt><dd data-i18n="p.int">Piano, violin, ký họa chân dung, cầu lông, bắn cung, chụp ảnh macro</dd></div>
+          </dl>
+        </div>
+        <div>
+          <div class="bio">
+            <p data-i18n="p.bio1">Phụng có hơn 5 năm vận hành hệ thống production: giám sát, cảnh báo, trực sự cố và đo độ tin cậy. Anh đã làm với hệ thống ngân hàng, hạ tầng AWS và GCP, và nền tảng AI cho doanh nghiệp.</p>
+            <p data-i18n="p.bio2">Anh bắt đầu sự nghiệp là kỹ sư nhúng, làm thiết bị IoT và cảm biến cho nhà thông minh. NexaEvo ghép hai kinh nghiệm này: đưa cách cảnh báo sớm của hệ thống phần mềm vào máy móc thật.</p>
+          </div>
+          <div class="block">
+            <span class="mono block-label" data-i18n="p.xp.l">Kinh nghiệm</span>
+            <div class="xp">
+              <div class="xp-row"><span class="when" data-i18n="x1.d">06/2026 – nay</span><div><h4>Quaveo <span>· Enterprise AI &amp; Agent DevOps</span></h4><p data-i18n="x1">Vận hành nền tảng Gemini Enterprise cho hơn 1.000 người dùng thí điểm: giám sát, bảo mật, quản trị AI và phát triển agent riêng. Báo cáo hằng tuần cho lãnh đạo về mức dùng, hiệu quả và rủi ro.</p></div></div>
+              <div class="xp-row"><span class="when">10/2025 – 05/2026</span><div><h4>base2services <span>· DevOps, Maintenance &amp; Support</span></h4><p data-i18n="x2">Dịch vụ DevOps và AWS cho nhiều khách hàng: giám sát, xử lý sự cố, vá hệ thống và hỗ trợ phát hành. Tối ưu bảo mật và chi phí đám mây.</p></div></div>
+              <div class="xp-row"><span class="when">02/2025 – 09/2025</span><div><h4>CIMB Bank <span>· Assistant Manager, DevOps, Maintenance &amp; Support</span></h4><p data-i18n="x3">Vận hành hệ thống ngân hàng: quản lý thẻ, giao dịch, KYC, khoản vay và thanh toán. Trực sự cố 24/7 và theo dõi các tác vụ chạy đêm.</p></div></div>
+              <div class="xp-row"><span class="when">01/2021 – 01/2025</span><div><h4>FPT Software <span>· DevOps Engineer &amp; SRE</span></h4><p data-i18n="x4">Dẫn dắt và hỗ trợ chuyển hạ tầng lên GCP. Xây SLI/SLO, quy trình trực sự cố và postmortem. Phát triển dịch vụ Java Spring Boot và Node.js cho nền tảng B2C, B2B.</p></div></div>
+              <div class="xp-row"><span class="when">05/2018 – 12/2020</span><div><h4>PIE Labs / BKSTEK <span>· Embedded Engineer</span></h4><p data-i18n="x5">Thiết bị IoT và nhà thông minh: firmware C/C++, MQTT, Node-RED trên Raspberry Pi, ứng dụng Flutter và OpenHAB.</p></div></div>
+            </div>
+          </div>
+          <div class="block">
+            <span class="mono block-label" data-i18n="p.sk.l">Kỹ năng chính</span>
+            <div class="skills">
+              <div class="sk"><b data-i18n="s1.l">Đám mây &amp; hạ tầng</b><span>GCP, AWS, Azure · Kubernetes (GKE, EKS), Docker · Terraform, Helm, Ansible, Argo CD</span></div>
+              <div class="sk"><b data-i18n="s2.l">Giám sát</b><span>Prometheus, Grafana, Loki, Tempo, OpenTelemetry · ELK, OpenSearch, New Relic, Dynatrace</span></div>
+              <div class="sk"><b data-i18n="s3.l">Dữ liệu &amp; thông điệp</b><span>PostgreSQL, MySQL, MongoDB, Redis · Kafka, RabbitMQ, MQTT, Pub/Sub</span></div>
+              <div class="sk"><b>AI</b><span data-i18n="s4">RAG, AI agent, tìm kiếm ngữ nghĩa · Qdrant, vector search, OCR và xử lý tài liệu · Vertex AI, Gemini Enterprise</span></div>
+              <div class="sk"><b data-i18n="s5.l">Lập trình</b><span>Python, Node.js, Java, Bash, C/C++</span></div>
+              <div class="sk"><b data-i18n="s6.l">IoT &amp; nhúng</b><span>Arduino, Raspberry Pi, Node-RED, OpenHAB, Flutter</span></div>
+            </div>
+          </div>
+          <div class="block two">
+            <div>
+              <span class="mono block-label" data-i18n="p.cert.l">Chứng chỉ</span>
+              <ul class="list">
+                <li>Solace Certified Integration Associate<span>2025–2028</span></li>
+                <li>Solace Certified Solutions Consultant<span>2025–2028</span></li>
+                <li>Google Cloud Professional Cloud Architect<span>2023–2025</span></li>
+                <li>Google Cloud Associate Cloud Engineer<span>2022–2025</span></li>
+                <li>HarvardX — Computer Science for AI &amp; Web Development<span>2021</span></li>
+                <li data-i18n-html="c.jlpt">Năng lực tiếng Nhật JLPT N4<span>2019</span></li>
+              </ul>
+            </div>
+            <div>
+              <span class="mono block-label" data-i18n="p.award.l">Giải thưởng</span>
+              <ul class="list">
+                <li data-i18n-html="a1">TopDev Challenge 2020 — hạng nhất vòng chung kết<span>2020</span></li>
+                <li data-i18n-html="a2">Học bổng Trường Đại học Bách khoa TP.HCM, học kỳ 2<span>2017–2018</span></li>
+                <li data-i18n-html="a3">Huy chương Đồng, Olympic truyền thống 30/4 lần thứ XXII môn Toán<span>2016</span></li>
+                <li data-i18n-html="a4">Giải Nhì, kỳ thi học sinh giỏi Toán tỉnh Ninh Thuận<span>2016–2017</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="research">
     <div class="wrap">
       <div class="sec-head">
-        <div class="mono" data-i18n="res.label">01 — Nghiên cứu</div>
+        <div class="mono" data-i18n="res.label">02 — Nghiên cứu</div>
         <div>
           <h2 data-i18n="res.title">Câu hỏi đầu tiên: báo trước sự cố trên dây chuyền khi điều kiện vận hành luôn thay đổi.</h2>
           <p data-i18n="res.lede">Bốn bài toán dưới đây hay bị gộp làm một. NexaEvo tách riêng từng bài, vì mỗi bài cần dữ liệu và cách đo khác nhau.</p>
@@ -274,7 +371,7 @@
   <section id="publications">
     <div class="wrap">
       <div class="sec-head">
-        <div class="mono" data-i18n="pub.label">02 — Công bố</div>
+        <div class="mono" data-i18n="pub.label">03 — Công bố</div>
         <div><h2 data-i18n="pub.title">Dữ liệu có đủ để chứng minh điều mình muốn nói không?</h2></div>
       </div>
       <div class="pub">
@@ -309,7 +406,7 @@
   <section id="method">
     <div class="wrap">
       <div class="sec-head">
-        <div class="mono" data-i18n="m.label">03 — Cách làm</div>
+        <div class="mono" data-i18n="m.label">04 — Cách làm</div>
         <div><h2 data-i18n="m.title">Sáu cổng kiểm tra trước khi một kết quả được gọi là kết quả.</h2></div>
       </div>
       <div class="gates">
@@ -317,50 +414,12 @@
         <div class="gate"><span class="mono">G1</span><h3 data-i18n="g1.t">Chốt đề bài</h3><p data-i18n="g1.b">Cố định bài toán, cách chia dữ liệu theo thời gian và theo máy, thước đo và điểm dừng trước khi chạy.</p></div>
         <div class="gate"><span class="mono">G2</span><h3 data-i18n="g2.t">Đối chứng</h3><p data-i18n="g2.b">Tái lập các phương pháp đơn giản. Kiểm tra lại cách tính thước đo một cách độc lập.</p></div>
         <div class="gate"><span class="mono">G3</span><h3 data-i18n="g3.t">Thực nghiệm</h3><p data-i18n="g3.b">Thử từng thành phần, chạy lặp nhiều lần, ghi lại cả kết quả không như mong đợi.</p></div>
-        <div class="gate"><span class="mono">G4</span><h3 data-i18n="g4.t">Phản biện</h3><p data-i18n="g4.b">Người khác chạy lại và soi kết quả trước khi công bố.</p></div>
+        <div class="gate"><span class="mono">G4</span><h3 data-i18n="g4.t">Phản biện</h3><p data-i18n="g4.b">Kết quả được chạy lại độc lập và soi kỹ trước khi công bố.</p></div>
         <div class="gate"><span class="mono">G5</span><h3 data-i18n="g5.t">Thí điểm</h3><p data-i18n="g5.b">Chạy song song với hệ thống thật và chỉ quan sát. Không tự điều khiển máy.</p></div>
       </div>
       <div class="measure">
         <div class="mono" data-i18n="measure.label">Thước đo chính</div>
         <p data-i18n="measure.text">Bắt được bao nhiêu sự cố, báo trước được bao lâu, trong khi số cảnh báo sai không vượt mức đã thống nhất từ đầu.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="people">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="mono" data-i18n="p.label">04 — Con người</div>
-        <div><h2 data-i18n="p.title">Người đứng sau NexaEvo.</h2></div>
-      </div>
-      <div class="person">
-        <div>
-          <h3>Nguyễn Hoàng Phụng</h3>
-          <p class="role" data-i18n="p.role">Người sáng lập · Nghiên cứu chính</p>
-          <dl>
-            <dt class="mono" data-i18n="p.edu.l">Học vấn</dt>
-            <dd data-i18n="p.edu">Trường Đại học Bách khoa TP.HCM (HCMUT) · Kỹ sư Điện – Điện tử – Viễn thông</dd>
-            <dt class="mono" data-i18n="p.cert.l">Chứng chỉ</dt>
-            <dd>Google Cloud Professional Cloud Architect (2023) · Solace Certified Solutions Consultant (2025)</dd>
-            <dt class="mono" data-i18n="p.award.l">Giải thưởng</dt>
-            <dd data-i18n="p.award">TopDev Challenge 2020 — hạng nhất vòng chung kết</dd>
-            <dt class="mono" data-i18n="p.contact.l">Liên hệ</dt>
-            <dd><a href="mailto:hphung10499@gmail.com">hphung10499@gmail.com</a></dd>
-          </dl>
-        </div>
-        <div>
-          <div class="bio">
-            <p data-i18n="p.bio1">Phụng có hơn 5 năm vận hành hệ thống production: giám sát, cảnh báo, trực sự cố và đo độ tin cậy. Anh đã làm với hệ thống ngân hàng, hạ tầng đám mây AWS, GCP và nền tảng AI doanh nghiệp.</p>
-            <p data-i18n="p.bio2">Trước đó, anh là kỹ sư nhúng, làm thiết bị IoT và cảm biến cho nhà thông minh. NexaEvo ghép hai kinh nghiệm này: đưa cách cảnh báo sớm của hệ thống phần mềm vào máy móc thật.</p>
-          </div>
-          <div class="timeline" aria-label="Kinh nghiệm" data-i18n-aria="p.exp">
-            <div class="tl"><span class="mono" data-i18n="t1.d">2026 – nay</span><div><b>Quaveo</b> · <span data-i18n="t1">Vận hành nền tảng AI doanh nghiệp và AI agent</span></div></div>
-            <div class="tl"><span class="mono">2025 – 2026</span><div><b>base2services</b> · <span data-i18n="t2">DevOps, dịch vụ AWS cho nhiều khách hàng</span></div></div>
-            <div class="tl"><span class="mono">2025</span><div><b>CIMB Bank</b> · <span data-i18n="t3">Trợ lý trưởng phòng DevOps, hệ thống ngân hàng</span></div></div>
-            <div class="tl"><span class="mono">2021 – 2025</span><div><b>FPT Software</b> · <span data-i18n="t4">Kỹ sư DevOps và SRE, hạ tầng GCP</span></div></div>
-            <div class="tl"><span class="mono">2018 – 2020</span><div><b>PIE Labs / BKSTEK</b> · <span data-i18n="t5">Kỹ sư nhúng, thiết bị IoT và nhà thông minh</span></div></div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -399,13 +458,14 @@
   u.innerHTML = cells;
 
   var EN = {
-    'nav.research': 'Research', 'nav.pub': 'Publications', 'nav.method': 'Method', 'nav.people': 'People', 'nav.collab': 'Collaborate',
-    'hero.eyebrow': 'Independent research organisation · Ho Chi Minh City',
+    'nav.research': 'Research', 'nav.pub': 'Publications', 'nav.method': 'Method', 'nav.about': 'About Phung', 'nav.collab': 'Collaborate',
+    'hero.eyebrow': 'Personal research organisation · Ho Chi Minh City',
     'hero.title': 'Early warning for production lines, <em>built on evidence first.</em>',
-    'hero.lede': 'NexaEvo researches AI and IoT for industrial maintenance. Every result states the data used, how it was measured and where it stops holding. Products come only after the evidence holds.',
+    'hero.lede': 'NexaEvo is the personal research organisation of Nguyen Hoang Phung, working on AI and IoT for industrial maintenance. Every result states the data used, how it was measured and where it stops holding.',
     'hero.cta1': 'Read the latest publication', 'hero.cta2': 'Collaborate with us',
+    'who': 'Founder · Lead researcher · DevOps/SRE and IoT engineer',
     'latest.label': 'Latest publication', 'latest.meta': 'Preprint · 30 Sep 2026 · 6 pages', 'latest.pdf': 'Read the PDF →', 'latest.alt': 'First page of the NEX-25 preprint',
-    'res.label': '01 — Research',
+    'res.label': '02 — Research',
     'res.title': 'First question: warning of line failures early, while operating conditions keep changing.',
     'res.lede': 'The four problems below are often treated as one. NexaEvo keeps them apart, because each needs different data and a different measure.',
     'q1.tag': 'Detection', 'q1.t': 'Is the machine abnormal right now?', 'q1.b': 'Needs data that clearly separates normal running from faults.',
@@ -418,7 +478,7 @@
     'h3.t': 'Sensors that must agree', 'h3.b': 'Vibration, temperature and current describe the same machine. When they disagree, the disagreement itself is worth a look.',
     'h4.t': 'Context of the whole line', 'h4.b': 'One faulty machine affects the ones after it. The line layout helps explain how a fault spreads.',
     'hyp.note': 'Each direction is compared with simple methods first. At most the two strongest go forward.',
-    'pub.label': '02 — Publications', 'pub.title': 'Does the data support the claim you want to make?',
+    'pub.label': '03 — Publications', 'pub.title': 'Does the data support the claim you want to make?',
     'pub.meta': 'Preprint · 30 Sep 2026 · Technical review and evaluation framework',
     'pub.summary': 'The paper reviews public conveyor and bearing datasets. Many support detecting a fault that is already present, not forecasting one. It proposes an evaluation protocol and a minimum data specification for a real pilot.',
     'f1': 'Accuracy of a rule that always predicts “no failure” on AI4I 2020. The rule catches none of the 339 failures.',
@@ -428,25 +488,39 @@
     'chart.aria': '100 cells of 100 records each; 3.39 orange cells are failures',
     'chart.acc': 'accuracy when always predicting “no failure”', 'chart.rec': 'failures detected',
     'chart.cap': 'Each cell is 100 records. The orange part is the 339 failures (3.39%). High accuracy does not mean the system can warn.',
-    'm.label': '03 — Method', 'm.title': 'Six gates before a result is called a result.',
+    'm.label': '04 — Method', 'm.title': 'Six gates before a result is called a result.',
     'g0.t': 'Survey', 'g0.b': 'Read primary sources. Check the data, usage rights and compute cost.',
     'g1.t': 'Freeze the task', 'g1.b': 'Fix the problem, splits by time and by machine, metrics and stop criteria before running.',
     'g2.t': 'Baselines', 'g2.b': 'Reproduce simple methods. Verify how the metrics are computed, independently.',
     'g3.t': 'Experiments', 'g3.b': 'Test each component, repeat runs, and record results that disappoint too.',
-    'g4.t': 'Review', 'g4.b': 'Someone else reruns and scrutinises the result before it is published.',
+    'g4.t': 'Review', 'g4.b': 'Results are rerun independently and scrutinised before publication.',
     'g5.t': 'Pilot', 'g5.b': 'Run in shadow mode beside the real system and only observe. Never act on the machines.',
     'measure.label': 'Primary measure',
     'measure.text': 'How many failures are caught and how early, while false alerts stay under a budget agreed at the start.',
-    'p.label': '04 — People', 'p.title': 'The person behind NexaEvo.',
+    'p.label': '01 — The researcher', 'p.title': 'NexaEvo is the personal research organisation of Nguyen Hoang Phung.',
+    'p.lede': 'Phung chooses the research questions, verifies the results and signs the papers. The research grows out of running real production systems.',
     'p.role': 'Founder · Lead researcher',
-    'p.edu.l': 'Education', 'p.edu': 'Ho Chi Minh City University of Technology (HCMUT) · B.Eng. Electrical, Electronics and Communications',
-    'p.cert.l': 'Certifications', 'p.award.l': 'Awards', 'p.award': 'TopDev Challenge 2020 — first place, final round', 'p.contact.l': 'Contact',
-    'p.bio1': 'Phung has spent over five years running production systems: monitoring, alerting, incident response and reliability measurement. He has worked on banking systems, AWS and GCP cloud infrastructure, and enterprise AI platforms.',
-    'p.bio2': 'Before that he was an embedded engineer building IoT devices and sensors for smart homes. NexaEvo joins the two: bringing the early-warning practice of software systems to real machines.',
-    'p.exp': 'Experience', 't1.d': '2026 – now',
-    't1': 'Operating an enterprise AI and agent platform', 't2': 'DevOps and AWS managed services across clients',
-    't3': 'Assistant Manager, DevOps, banking systems', 't4': 'DevOps engineer and SRE, GCP infrastructure',
-    't5': 'Embedded engineer, IoT devices and smart homes',
+    'p.loc.l': 'Based in', 'p.loc': 'Ho Chi Minh City, Vietnam',
+    'p.edu.l': 'Education', 'p.edu': 'B.Eng. Electrical, Electronics and Communications, Ho Chi Minh City University of Technology (2017–2023)',
+    'p.lang.l': 'Languages', 'p.lang': 'Japanese, JLPT N4',
+    'p.int.l': 'Off hours', 'p.int': 'Piano, violin, portrait sketching, badminton, archery, macro photography',
+    'p.bio1': 'Phung has spent over five years running production systems: monitoring, alerting, incident response and reliability measurement. He has worked on banking systems, AWS and GCP infrastructure, and enterprise AI platforms.',
+    'p.bio2': 'He started his career as an embedded engineer building IoT devices and sensors for smart homes. NexaEvo joins the two: bringing the early-warning practice of software systems to real machines.',
+    'p.xp.l': 'Experience', 'x1.d': '06/2026 – now',
+    'x1': 'Runs the Gemini Enterprise platform for 1,000+ pilot users: monitoring, security, AI governance and private agent development. Weekly reporting to leadership on usage, ROI and risk.',
+    'x2': 'DevOps and AWS managed services across client environments: monitoring, incident response, patching and release support. Cloud security and cost optimisation.',
+    'x3': 'Production banking systems: card management, transactions, KYC, loans and payments. 24/7 on-call and night-batch monitoring.',
+    'x4': 'Led and supported GCP migrations. Set up SLIs/SLOs, on-call and postmortems. Built Java Spring Boot and Node.js services for B2C and B2B platforms.',
+    'x5': 'Smart-home and IoT devices: C/C++ firmware, MQTT, Node-RED on Raspberry Pi, Flutter apps and OpenHAB.',
+    'p.sk.l': 'Core skills', 's1.l': 'Cloud & infrastructure', 's2.l': 'Observability', 's3.l': 'Data & messaging',
+    's4': 'RAG, AI agents, semantic search · Qdrant, vector search, OCR and document parsing · Vertex AI, Gemini Enterprise',
+    's5.l': 'Programming', 's6.l': 'IoT & embedded',
+    'p.cert.l': 'Certifications', 'c.jlpt': 'Japanese Language Proficiency Test, JLPT N4<span>2019</span>',
+    'p.award.l': 'Honours & awards',
+    'a1': 'TopDev Challenge 2020 — first place, final round<span>2020</span>',
+    'a2': 'Ho Chi Minh City University of Technology scholarship, semester 2<span>2017–2018</span>',
+    'a3': 'Bronze medal, 22nd April 30th Mathematics Olympiad<span>2016</span>',
+    'a4': 'Second prize, Ninh Thuan Provincial Mathematics Competition<span>2016–2017</span>',
     'c.label': '05 — Collaborate', 'c.title': 'Do research with NexaEvo.',
     'c1.t': 'Factories', 'c1.b': 'Have sensor data and maintenance logs? Let us analyse them together, or run a shadow trial on one line.',
     'c2.t': 'Researchers', 'c2.b': 'Reproduce results, review them, or co-author.',
@@ -456,7 +530,7 @@
   var nodes = document.querySelectorAll('[data-i18n],[data-i18n-html],[data-i18n-alt],[data-i18n-aria]');
   var VI = [];
   nodes.forEach(function (n) { VI.push({ t: n.innerHTML, alt: n.getAttribute('alt'), aria: n.getAttribute('aria-label') }); });
-  var TITLE = { vi: document.title, en: 'NexaEvo — Research on early warning for production lines' };
+  var TITLE = { vi: document.title, en: 'NexaEvo — Personal research organisation of Nguyen Hoang Phung' };
   var CHART = { vi: 'AI4I 2020 · 10.000 bản ghi', en: 'AI4I 2020 · 10,000 records' };
   function apply(lang) {
     nodes.forEach(function (n, i) {
