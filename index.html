@@ -9,12 +9,12 @@
 <meta property="og:description" content="Nghiên cứu AI và IoT cho bảo trì công nghiệp: cảnh báo sớm cho dây chuyền sản xuất, bắt đầu từ bằng chứng.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nexaevo.org/">
-<meta property="og:image" content="https://nexaevo.org/og-research.png">
+<meta property="og:image" content="https://nexaevo.org/og-research-2.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://nexaevo.org/">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ResearchOrganization","@id":"https://nexaevo.org/#org","name":"NexaEvo","description":"Personal research organisation of Nguyen Hoang Phung on AI and IoT for industrial maintenance.","url":"https://nexaevo.org/","logo":"https://nexaevo.org/logo-512.png","email":"hphung10499@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"founder":{"@id":"https://nexaevo.org/#phung"}},{"@type":"Person","@id":"https://nexaevo.org/#phung","name":"Nguyễn Hoàng Phụng","alternateName":"Nguyen Hoang Phung","jobTitle":"Founder and lead researcher, NexaEvo","email":"hphung10499@gmail.com","url":"https://nexaevo.org/#about","address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Ho Chi Minh City University of Technology (HCMUT)"},"hasCredential":{"@type":"EducationalOccupationalCredential","credentialCategory":"degree","name":"MBA (in progress, since 2026)","recognizedBy":{"@type":"CollegeOrUniversity","name":"Illinois Institute of Technology"}},"knowsAbout":["Site reliability engineering","DevOps","Cloud infrastructure","Kubernetes","Observability","Industrial IoT","Predictive maintenance","Retrieval-augmented generation"],"award":["TopDev Challenge 2020 — first place, final round","Bronze medal — 22nd April 30th Mathematics Olympiad"],"worksFor":{"@id":"https://nexaevo.org/#org"}},{"@type":"ScholarlyArticle","headline":"Dataset Suitability for Predictive Maintenance in Conveyor-Based Factories: A Technical Review and Evaluation Framework","author":{"@id":"https://nexaevo.org/#phung"},"datePublished":"2026-09-30","url":"https://nexaevo.org/papers/dataset-suitability/","publisher":{"@id":"https://nexaevo.org/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ResearchOrganization","@id":"https://nexaevo.org/#org","name":"NexaEvo","description":"Personal research organisation of Nguyen Hoang Phung on AI and IoT for industrial maintenance.","url":"https://nexaevo.org/","logo":"https://nexaevo.org/logo-512.png","email":"hphung10499@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"founder":{"@id":"https://nexaevo.org/#phung"}},{"@type":"Person","@id":"https://nexaevo.org/#phung","name":"Nguyễn Hoàng Phụng","alternateName":"Nguyen Hoang Phung","jobTitle":"Founder and lead researcher, NexaEvo","email":"hphung10499@gmail.com","url":"https://nexaevo.org/#about","address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Ho Chi Minh City University of Technology (HCMUT)"},"hasCredential":{"@type":"EducationalOccupationalCredential","credentialCategory":"degree","name":"MBA (in progress, since 2026)","recognizedBy":{"@type":"CollegeOrUniversity","name":"Illinois Institute of Technology"}},"knowsAbout":["Site reliability engineering","DevOps","Cloud infrastructure","Kubernetes","Observability","Industrial IoT","Predictive maintenance","Retrieval-augmented generation"],"award":["TopDev Challenge 2020 — first place, final round","Bronze medal — 22nd April 30th Mathematics Olympiad"],"worksFor":{"@id":"https://nexaevo.org/#org"}},{"@type":"ScholarlyArticle","headline":"Alarm-Policy Sensitivity in Bearing Endpoint Warning: A Conveyor-Motivated Dataset Audit","author":{"@id":"https://nexaevo.org/#phung"},"datePublished":"2026-10-03","version":"1.0.0","identifier":"https://doi.org/10.5281/zenodo.23117996","url":"https://zenodo.org/records/23117996","sameAs":"https://doi.org/10.5281/zenodo.23117996","license":"https://creativecommons.org/licenses/by/4.0/","publisher":{"@type":"Organization","name":"Zenodo"},"isPartOf":{"@id":"https://nexaevo.org/#org"}}]}</script>
 <meta name="theme-color" content="#F6F5F0">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -119,10 +119,14 @@
   .pub-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
   .figure{border:1px solid var(--line);background:var(--white);padding:26px 26px 22px}
   .figure .mono{display:block;margin-bottom:16px}
-  .units{display:grid;grid-template-columns:repeat(20,1fr);gap:3px}
-  .units i{display:block;aspect-ratio:1;background:#E9E7E0}
-  .units i.f{background:var(--accent)}
-  .units i.p{background:linear-gradient(90deg,var(--accent) 39%,#E9E7E0 39%)}
+  .pairs{display:grid;gap:16px}
+  .pair-head{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;font-weight:600;margin-bottom:6px}
+  .pair-row{display:grid;grid-template-columns:104px minmax(0,1fr) 46px;white-space:nowrap;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);margin-top:5px}
+  .pair-row b{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink);text-align:right}
+  .cells{display:grid;grid-template-columns:repeat(15,1fr);gap:3px}
+  .cells i{display:block;aspect-ratio:1;background:#E9E7E0}
+  .cells i.on{background:var(--accent)}
+  .cells.soft i.on{background:#F2B79A}
   .figure .read{display:grid;grid-template-columns:1fr 1fr;margin-top:22px;border-top:1px solid var(--line)}
   .figure .read div{padding:14px 0 0}
   .figure .read div + div{padding-left:18px;border-left:1px solid var(--line)}
@@ -258,12 +262,12 @@
     </div>
     <aside class="latest" aria-labelledby="latest-title">
       <div class="mono" data-i18n="latest.label">Công bố mới nhất</div>
-      <a class="paper" href="papers/dataset-suitability/">
-        <div class="thumb"><img src="assets/paper-p1.webp" width="935" height="1210" alt="Trang đầu bài preprint NEX-25" data-i18n-alt="latest.alt"></div>
-        <h3 id="latest-title">Dataset Suitability for Predictive Maintenance in Conveyor-Based Factories</h3>
-        <p class="meta" data-i18n="latest.meta">Preprint · 30/09/2026 · 6 trang</p>
+      <a class="paper" href="papers/alarm-policy-sensitivity/">
+        <div class="thumb"><img src="assets/alarm-policy-p1.webp" width="935" height="1210" alt="Trang đầu bài preprint trên Zenodo" data-i18n-alt="latest.alt"></div>
+        <h3 id="latest-title">Alarm-Policy Sensitivity in Bearing Endpoint Warning</h3>
+        <p class="meta" data-i18n="latest.meta">Preprint · Zenodo · 03/10/2026</p>
       </a>
-      <a class="arrow" href="papers/nexaevo-2026-dataset-suitability.pdf" data-i18n="latest.pdf">Đọc bản PDF →</a>
+      <a class="arrow" href="https://zenodo.org/records/23117996" data-i18n="latest.pdf">Đọc trên Zenodo →</a>
     </aside>
   </div></div>
 
@@ -374,32 +378,28 @@
     <div class="wrap">
       <div class="sec-head">
         <div class="mono" data-i18n="pub.label">03 — Công bố</div>
-        <div><h2 data-i18n="pub.title">Dữ liệu có đủ để chứng minh điều mình muốn nói không?</h2></div>
+        <div><h2 data-i18n="pub.title">Một cảnh báo được tính là “báo trúng” theo cách nào?</h2></div>
       </div>
       <div class="pub">
         <article>
-          <div class="mono" data-i18n="pub.meta">Preprint · 30/09/2026 · Tổng quan kỹ thuật và khung đánh giá</div>
-          <h3 class="pub-title"><a href="papers/dataset-suitability/">Dataset Suitability for Predictive Maintenance in Conveyor-Based Factories: A Technical Review and Evaluation Framework</a></h3>
-          <p class="byline">Hoàng Phụng · NexaEvo</p>
-          <p class="pub-summary" data-i18n="pub.summary">Bài viết rà soát các bộ dữ liệu công khai về băng tải và ổ bi. Nhiều bộ chỉ đủ để phát hiện lỗi đang xảy ra, chưa đủ để dự báo. Bài đề xuất cách đánh giá và lượng dữ liệu tối thiểu cho một thí điểm thật.</p>
+          <div class="mono" data-i18n="pub.meta">Preprint · v1.0.0 · 03/10/2026 · 11 trang · CC BY 4.0</div>
+          <h3 class="pub-title"><a href="papers/alarm-policy-sensitivity/">Alarm-Policy Sensitivity in Bearing Endpoint Warning: A Conveyor-Motivated Dataset Audit</a></h3>
+          <p class="byline">Nguyễn Hoàng Phụng · NexaEvo · DOI <a href="https://doi.org/10.5281/zenodo.23117996">10.5281/zenodo.23117996</a></p>
+          <p class="pub-summary" data-i18n="pub.summary">Bài kiểm tra cách chấm điểm cảnh báo sớm hỏng ổ bi trên trọn vòng đời của 15 ổ bi XJTU-SY và 6 ổ bi PRONOSTIA. Cùng một điểm số, chỉ đổi cách tính “báo trúng” là kết luận đã khác. Vì vậy số sự cố bắt được, số cảnh báo phải gửi và thời gian cảnh báo bật cần được báo cáo cùng nhau.</p>
           <div class="facts">
-            <div class="fact"><b>96,61%</b><p data-i18n="f1">Độ chính xác của một quy tắc luôn đoán “không hỏng” trên bộ AI4I 2020. Quy tắc này không bắt được ca hỏng nào trong 339 ca.</p></div>
-            <div class="fact"><b data-i18n="f2.n">1.500 dòng</b><p data-i18n="f2">Bộ dữ liệu băng tải trên Figshare có 5 trạng thái cân bằng, nhưng không có mốc thời gian hay mã máy. Vì vậy không thể dùng để dự báo.</p></div>
-            <div class="fact"><b data-i18n="f3.n">15 ổ bi</b><p data-i18n="f3">XJTU-SY ghi trọn vòng đời của 15 ổ bi trong phòng thí nghiệm. Đây là điểm khởi đầu hợp lý cho bài toán tuổi thọ còn lại của linh kiện.</p></div>
+            <div class="fact"><b>8 → 14</b><p data-i18n="f1">Cùng điểm số RMS trên 15 ổ bi: chỉ tính cảnh báo mới phát ra trong 15 phút cuối thì trúng 8. Tính cả cảnh báo đã bật từ trước thì thành 14.</p></div>
+            <div class="fact"><b data-i18n="f2.n">10,76 / giờ</b><p data-i18n="f2">Trên PRONOSTIA, hồi quy logistic bắt đủ 6/6 ổ bi, nhưng phát 10,76 cảnh báo sớm cho mỗi giờ theo dõi.</p></div>
+            <div class="fact"><b>37 → 13</b><p data-i18n="f3">Chỉ bật cảnh báo sau hai lần xác nhận liên tiếp: cảnh báo sớm của hồi quy logistic giảm từ 37 xuống 13, số ổ bi báo trúng vẫn là 5/15.</p></div>
           </div>
           <div class="pub-actions">
-            <a class="btn btn-primary" href="papers/nexaevo-2026-dataset-suitability.pdf" data-i18n="pub.pdf">Tải PDF</a>
-            <a class="btn btn-ghost" href="papers/dataset-suitability/" data-i18n="pub.page">Tóm tắt và trích dẫn</a>
+            <a class="btn btn-primary" href="https://zenodo.org/records/23117996" data-i18n="pub.zenodo">Đọc trên Zenodo</a>
+            <a class="btn btn-ghost" href="papers/alarm-policy-sensitivity/" data-i18n="pub.page">Tóm tắt và trích dẫn</a>
           </div>
         </article>
         <figure class="figure" style="margin:0">
-          <span class="mono" id="chart-label">AI4I 2020 · 10.000 bản ghi</span>
-          <div class="units" id="units" role="img" aria-label="100 ô, mỗi ô 100 bản ghi; 3,39 ô màu cam là ca hỏng" data-i18n-aria="chart.aria"></div>
-          <div class="read">
-            <div><b>96,61%</b><span data-i18n="chart.acc">độ chính xác khi luôn đoán “không hỏng”</span></div>
-            <div><b>0 / 339</b><span data-i18n="chart.rec">ca hỏng được phát hiện</span></div>
-          </div>
-          <figcaption data-i18n="chart.cap">Mỗi ô là 100 bản ghi. Phần màu cam là 339 ca hỏng (3,39%). Độ chính xác cao không có nghĩa là hệ thống biết cảnh báo.</figcaption>
+          <span class="mono" id="chart-label">XJTU-SY · 15 ổ bi · H = 15 phút</span>
+          <div class="pairs" id="pairs" role="img" aria-label="RMS: 8 trên 15 ổ bi theo cảnh báo mới, 14 trên 15 theo cảnh báo đang bật. Hồi quy logistic: 5 và 11." data-i18n-aria="chart.aria"></div>
+          <figcaption data-i18n="chart.cap">Mỗi ô là một ổ bi. Ô cam đậm: có cảnh báo mới phát ra trong 15 phút cuối. Ô cam nhạt: chỉ cần cảnh báo đang bật. Điểm số của mô hình không đổi.</figcaption>
         </figure>
       </div>
     </div>
@@ -454,10 +454,22 @@
 
 <script>
 (function () {
-  // AI4I 2020: 10,000 records drawn as 100 cells of 100; 339 failures = 3 full cells + 39% of the fourth.
-  var u = document.getElementById('units'), cells = '';
-  for (var i = 0; i < 100; i++) cells += '<i' + (i < 3 ? ' class="f"' : i === 3 ? ' class="p"' : '') + '></i>';
-  u.innerHTML = cells;
+  // Table 3 of the paper: timely onset hits vs active-state-overlap hits out of 15 XJTU-SY bearings.
+  var PAIRS = [['RMS', 8, 14], ['Logistic', 5, 11]];
+  var LBL = { vi: ['Cảnh báo mới', 'Đang bật'], en: ['New alarm', 'Already active'] };
+  function drawPairs(lang) {
+    var h = '';
+    PAIRS.forEach(function (p) {
+      h += '<div><div class="pair-head"><span>' + (p[0] === 'Logistic' && lang !== 'en' ? 'Hồi quy logistic' : p[0]) + '</span></div>';
+      [[p[1], ''], [p[2], ' soft']].forEach(function (r, k) {
+        var c = ''; for (var i = 0; i < 15; i++) c += '<i' + (i < r[0] ? ' class="on"' : '') + '></i>';
+        h += '<div class="pair-row"><span>' + LBL[lang][k] + '</span><div class="cells' + r[1] + '">' + c + '</div><b>' + r[0] + '/15</b></div>';
+      });
+      h += '</div>';
+    });
+    document.getElementById('pairs').innerHTML = h;
+  }
+  drawPairs('vi');
 
   var EN = {
     'nav.research': 'Research', 'nav.pub': 'Publications', 'nav.method': 'Method', 'nav.about': 'About Phung', 'nav.collab': 'Collaborate',
@@ -466,7 +478,7 @@
     'hero.lede': 'NexaEvo is the personal research organisation of Nguyen Hoang Phung, working on AI and IoT for industrial maintenance. Every result states the data used, how it was measured and where it stops holding.',
     'hero.cta1': 'Read the latest publication', 'hero.cta2': 'Collaborate with us',
     'who': 'Founder · Lead researcher · DevOps/SRE and IoT engineer',
-    'latest.label': 'Latest publication', 'latest.meta': 'Preprint · 30 Sep 2026 · 6 pages', 'latest.pdf': 'Read the PDF →', 'latest.alt': 'First page of the NEX-25 preprint',
+    'latest.label': 'Latest publication', 'latest.meta': 'Preprint · Zenodo · 3 Oct 2026', 'latest.pdf': 'Read on Zenodo →', 'latest.alt': 'First page of the preprint on Zenodo',
     'res.label': '02 — Research',
     'res.title': 'First question: warning of line failures early, while operating conditions keep changing.',
     'res.lede': 'The four problems below are often treated as one. NexaEvo keeps them apart, because each needs different data and a different measure.',
@@ -480,16 +492,15 @@
     'h3.t': 'Sensors that must agree', 'h3.b': 'Vibration, temperature and current describe the same machine. When they disagree, the disagreement itself is worth a look.',
     'h4.t': 'Context of the whole line', 'h4.b': 'One faulty machine affects the ones after it. The line layout helps explain how a fault spreads.',
     'hyp.note': 'Each direction is compared with simple methods first. At most the two strongest go forward.',
-    'pub.label': '03 — Publications', 'pub.title': 'Does the data support the claim you want to make?',
-    'pub.meta': 'Preprint · 30 Sep 2026 · Technical review and evaluation framework',
-    'pub.summary': 'The paper reviews public conveyor and bearing datasets. Many support detecting a fault that is already present, not forecasting one. It proposes an evaluation protocol and a minimum data specification for a real pilot.',
-    'f1': 'Accuracy of a rule that always predicts “no failure” on AI4I 2020. The rule catches none of the 339 failures.',
-    'f2.n': '1,500 rows', 'f2': 'The Figshare conveyor dataset has 5 balanced states but no timestamp or machine ID, so it cannot support forecasting.',
-    'f3.n': '15 bearings', 'f3': 'XJTU-SY records complete laboratory lifetimes of 15 bearings: a reasonable start for component remaining-life research.',
-    'pub.pdf': 'Download PDF', 'pub.page': 'Abstract and citation',
-    'chart.aria': '100 cells of 100 records each; 3.39 orange cells are failures',
-    'chart.acc': 'accuracy when always predicting “no failure”', 'chart.rec': 'failures detected',
-    'chart.cap': 'Each cell is 100 records. The orange part is the 339 failures (3.39%). High accuracy does not mean the system can warn.',
+    'pub.label': '03 — Publications', 'pub.title': 'What counts as a warning that “hit”?',
+    'pub.meta': 'Preprint · v1.0.0 · 3 Oct 2026 · 11 pages · CC BY 4.0',
+    'pub.summary': 'The paper audits how early bearing-failure warnings are scored, on complete histories of 15 XJTU-SY and 6 PRONOSTIA bearings. With the same scores, changing only what counts as a hit changes the conclusion. Failures caught, notifications sent and time spent in alarm should therefore be reported together.',
+    'f1': 'Same RMS scores on 15 bearings: counting only alarms newly issued in the last 15 minutes gives 8 hits. Counting alarms already active gives 14.',
+    'f2.n': '10.76 / hour', 'f2': 'On PRONOSTIA, logistic regression catches all 6 bearings, but issues 10.76 early alarms per monitored hour.',
+    'f3': 'Raising an alarm only after two consecutive confirmations cuts logistic early alarms from 37 to 13, while timely hits stay at 5/15.',
+    'pub.zenodo': 'Read on Zenodo', 'pub.page': 'Abstract and citation',
+    'chart.aria': 'RMS: 8 of 15 bearings by newly issued alarm, 14 of 15 by active alarm. Logistic regression: 5 and 11.',
+    'chart.cap': 'Each cell is one bearing. Dark orange: a new alarm was issued in the last 15 minutes. Light orange: an active alarm is enough. The model scores do not change.',
     'm.label': '04 — Method', 'm.title': 'Six gates before a result is called a result.',
     'g0.t': 'Survey', 'g0.b': 'Read primary sources. Check the data, usage rights and compute cost.',
     'g1.t': 'Freeze the task', 'g1.b': 'Fix the problem, splits by time and by machine, metrics and stop criteria before running.',
@@ -533,7 +544,7 @@
   var VI = [];
   nodes.forEach(function (n) { VI.push({ t: n.innerHTML, alt: n.getAttribute('alt'), aria: n.getAttribute('aria-label') }); });
   var TITLE = { vi: document.title, en: 'NexaEvo — Personal research organisation of Nguyen Hoang Phung' };
-  var CHART = { vi: 'AI4I 2020 · 10.000 bản ghi', en: 'AI4I 2020 · 10,000 records' };
+  var CHART = { vi: 'XJTU-SY · 15 ổ bi · H = 15 phút', en: 'XJTU-SY · 15 bearings · H = 15 min' };
   function apply(lang) {
     nodes.forEach(function (n, i) {
       var k = n.getAttribute('data-i18n') || n.getAttribute('data-i18n-html');
@@ -546,6 +557,7 @@
     document.documentElement.lang = lang;
     document.title = TITLE[lang];
     document.getElementById('chart-label').textContent = CHART[lang];
+    drawPairs(lang);
     document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
     try { localStorage.setItem('nexaevo.lang', lang); } catch (e) {}
   }

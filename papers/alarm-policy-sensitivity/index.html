@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alarm-Policy Sensitivity in Bearing Endpoint Warning — NexaEvo</title>
+<meta name="description" content="Preprint by Nguyễn Hoàng Phụng (NexaEvo), 3 October 2026: why event coverage, notification workload and alarm-state occupancy must be reported together in bearing warning benchmarks. DOI 10.5281/zenodo.23117996.">
+<meta property="og:title" content="Alarm-Policy Sensitivity in Bearing Endpoint Warning: A Conveyor-Motivated Dataset Audit">
+<meta property="og:description" content="Preprint by Nguyễn Hoàng Phụng, NexaEvo, 3 October 2026. DOI 10.5281/zenodo.23117996.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nexaevo.org/papers/alarm-policy-sensitivity/">
+<meta property="og:image" content="https://nexaevo.org/og-research-2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="canonical" href="https://nexaevo.org/papers/alarm-policy-sensitivity/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Alarm-Policy Sensitivity in Bearing Endpoint Warning: A Conveyor-Motivated Dataset Audit","author":{"@type":"Person","name":"Nguyễn Hoàng Phụng","alternateName":"Nguyen Hoang Phung","affiliation":{"@type":"ResearchOrganization","name":"NexaEvo","url":"https://nexaevo.org/"}},"datePublished":"2026-10-03","version":"1.0.0","identifier":"https://doi.org/10.5281/zenodo.23117996","url":"https://zenodo.org/records/23117996","sameAs":"https://doi.org/10.5281/zenodo.23117996","license":"https://creativecommons.org/licenses/by/4.0/","keywords":["bearing monitoring","predictive maintenance","alarm episodes","grouped evaluation","calibration","reproducibility"]}</script>
+<link rel="icon" href="../../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F6F5F0;--white:#fff;--ink:#16181D;--ink-2:#3D414A;--muted:#6B6F78;--line:#DAD7CD;--accent:#C2410C;
+    --sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Source Serif 4",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  header{border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:19px}
+  .brand img{width:30px;height:30px}
+  .back{font-size:15px;color:var(--ink-2);text-decoration:none}
+  .back:hover{color:var(--ink)}
+  .mono{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  main{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:64px;padding:72px 0 88px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,44px);line-height:1.15;letter-spacing:-.015em;margin:16px 0 20px;text-wrap:balance}
+  .authors{font-size:17px}
+  .authors span{color:var(--muted)}
+  h2{font-size:13px;font-family:var(--mono);font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:48px 0 14px;padding-top:18px;border-top:1px solid var(--ink)}
+  .abstract{font-family:var(--serif);font-size:19px;line-height:1.6;color:var(--ink)}
+  .abstract p{margin:0}
+  .results{border-top:1px solid var(--line)}
+  .res{display:grid;grid-template-columns:120px minmax(0,1fr);gap:22px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .res b{font-family:var(--serif);font-size:24px;line-height:1.2;font-weight:600;white-space:nowrap}
+  .res p{margin:0;font-size:16px;color:var(--ink-2)}
+  .kw{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px;color:var(--ink-2)}
+  pre{margin:0;background:var(--white);border:1px solid var(--line);padding:18px 20px;font:13.5px/1.6 var(--mono);white-space:pre-wrap;word-break:break-word;color:var(--ink-2)}
+  .cite-plain{margin:0 0 14px;font-size:15.5px;color:var(--ink-2)}
+  aside{border-left:1px solid var(--line);padding-left:32px;align-self:start;position:sticky;top:24px}
+  aside .thumb{border:1px solid var(--line);background:var(--white);display:block}
+  aside .thumb:hover{border-color:var(--ink)}
+  aside img{width:100%;height:auto;display:block}
+  .btn{display:flex;align-items:center;justify-content:center;min-height:48px;margin-top:18px;background:var(--ink);color:#fff;font-weight:600;text-decoration:none;border:1px solid var(--ink)}
+  .btn:hover{background:#000}
+  .btn.ghost{background:transparent;color:var(--ink);margin-top:10px}
+  .btn.ghost:hover{background:var(--white)}
+  dl{margin:22px 0 0;font-size:14.5px}
+  dt{color:var(--muted);margin-top:12px}
+  dd{margin:2px 0 0;overflow-wrap:anywhere}
+  .note{font-size:15px;color:var(--ink-2);margin-top:14px}
+  footer{border-top:1px solid var(--line);padding:26px 0 44px;font-size:14px;color:var(--muted)}
+  @media (max-width:880px){main{grid-template-columns:1fr;gap:40px;padding-top:48px}aside{position:static;border-left:0;border-top:1px solid var(--line);padding:28px 0 0;display:grid;grid-template-columns:140px 1fr;gap:20px}aside .btn:first-child{margin-top:0}}
+  @media (max-width:520px){.wrap{padding:0 20px}aside{grid-template-columns:1fr}.res{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="../../"><img src="../../logo-64.png" width="30" height="30" alt="">NexaEvo</a>
+  <a class="back" href="../../#publications">← All publications</a>
+</div></header>
+<div class="wrap">
+<main>
+  <article>
+    <div class="mono">Preprint · v1.0.0 · 3 October 2026 · Zenodo</div>
+    <h1>Alarm-Policy Sensitivity in Bearing Endpoint Warning: A Conveyor-Motivated Dataset Audit</h1>
+    <p class="authors">Nguyễn Hoàng Phụng <span>· NexaEvo, Ho Chi Minh City, Vietnam</span></p>
+
+    <h2>Abstract</h2>
+    <div class="abstract"><p>Bearing-warning benchmarks can yield different conclusions depending on whether they credit newly issued notifications or persistent alarm states. We investigate this distinction through a targeted audit of eight maintenance dataset families and reproducible experiments on complete XJTU-SY and PRONOSTIA histories. Five fixed comparators are evaluated with whole-asset separation and training-only transformations. On fifteen XJTU-SY bearings under condition holdout, the original fifteen-minute protocol gives RMS thresholding 8/15 timely onset hits but 14/15 active-state-overlap hits; logistic regression gives 5/15 and 11/15, respectively. A complete horizon–threshold grid and causal persistence analysis show substantial policy sensitivity without selecting a favorable operating point. A paired disjoint-calibration stress-test changes logistic coverage and notification burden together. In a separate within-PRONOSTIA evaluation of six complete learning histories, RMS and logistic achieve 5/6 and 6/6 onset hits, but produce 4.208 and 10.760 early episodes per monitored hour. The second dataset is not a cross-dataset transfer test. Raw provenance, timestamp exceptions, predictions, configurations and independent computational checks accompany the analysis. The experiments concern laboratory acquisition endpoints, not independently adjudicated factory failures. Their contribution is an auditable case study showing why event coverage, notification frequency, persistent-state occupancy and endpoint construction must be interpreted jointly.</p></div>
+
+    <h2>Key results</h2>
+    <div class="results">
+      <div class="res"><b>8 → 14</b><p>RMS thresholding on 15 XJTU-SY bearings (H = 15 min, q = .95): 8/15 timely onset hits, 14/15 active-state-overlap hits, from the same scores. Logistic regression: 5/15 and 11/15.</p></div>
+      <div class="res"><b>37 → 13</b><p>A causal two-confirmation rule cuts logistic out-of-horizon episodes from 37 to 13; its onset hits stay at 5/15.</p></div>
+      <div class="res"><b>11 → 16</b><p>Disjoint threshold selection raises logistic hits from 11/30 to 16/30 test appearances, and out-of-horizon notifications from 27 to 48.</p></div>
+      <div class="res"><b>10.76 / h</b><p>On six complete PRONOSTIA histories, logistic reaches 6/6 onset hits with 10.760 early episodes per monitored hour; RMS 5/6 with 4.208.</p></div>
+    </div>
+
+    <h2>Keywords</h2>
+    <div class="kw"><span>bearing monitoring</span><span>predictive maintenance</span><span>alarm episodes</span><span>grouped evaluation</span><span>calibration</span><span>reproducibility</span></div>
+
+    <h2>Cite</h2>
+    <p class="cite-plain">Nguyễn Hoàng Phụng. <i>Alarm-Policy Sensitivity in Bearing Endpoint Warning: A Conveyor-Motivated Dataset Audit.</i> Preprint, v1.0.0. Zenodo, 3 October 2026. https://doi.org/10.5281/zenodo.23117996</p>
+<pre>@misc{phung2026alarmpolicy,
+  author    = {Nguy{\~{\^e}}n Ho{\`a}ng Phụng},
+  title     = {Alarm-Policy Sensitivity in Bearing Endpoint Warning:
+               A Conveyor-Motivated Dataset Audit},
+  year      = {2026},
+  month     = oct,
+  version   = {v1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.23117996},
+  url       = {https://doi.org/10.5281/zenodo.23117996},
+  note      = {Preprint}
+}</pre>
+  </article>
+  <aside>
+    <a class="thumb" href="https://zenodo.org/records/23117996"><img src="../../assets/alarm-policy-p1.webp" width="961" height="1243" alt="First page of the preprint"></a>
+    <div>
+      <a class="btn" href="https://zenodo.org/records/23117996">Read on Zenodo</a>
+      <a class="btn ghost" href="https://zenodo.org/records/23117996/files/Alarm-Policy%20Sensitivity%20in%20Bearing%20Endpoint%20Warning-%20A%20Conveyor-Motivated%20Dataset%20Audit.pdf?download=1">Download PDF</a>
+      <dl>
+        <dt>DOI</dt><dd><a href="https://doi.org/10.5281/zenodo.23117996">10.5281/zenodo.23117996</a></dd>
+        <dt>Type</dt><dd>Preprint · 11 pages</dd>
+        <dt>Released</dt><dd>3 October 2026 · v1.0.0</dd>
+        <dt>License</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></dd>
+        <dt>Contact</dt><dd><a href="mailto:hphung10499@gmail.com">hphung10499@gmail.com</a></dd>
+      </dl>
+      <p class="note">The experiments use laboratory bearing endpoints, not factory failures. The paper reports no deployable conveyor predictor.</p>
+    </div>
+  </aside>
+</main>
+</div>
+<footer><div class="wrap">© 2026 NexaEvo · nexaevo.org</div></footer>
+</body>
+</html>
